@@ -1,12 +1,12 @@
-# Indian BLDC Fan Card (formerly Superfan Card) (`superfan-card`)
+# Indian BLDC Fan Card (`bldc-fan-card`)
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
-[![Stable](https://img.shields.io/github/v/release/selvakk2k/superfan-card?label=Stable&style=flat-square)](https://github.com/selvakk2k/superfan-card/releases/latest)
-[![Beta](https://img.shields.io/github/v/release/selvakk2k/superfan-card?include_prereleases&label=Beta&color=orange&style=flat-square)](https://github.com/selvakk2k/superfan-card/releases)
+[![Stable](https://img.shields.io/github/v/release/selvakk2k/bldc-fan-card?label=Stable&style=flat-square)](https://github.com/selvakk2k/bldc-fan-card/releases/latest)
+[![Beta](https://img.shields.io/github/v/release/selvakk2k/bldc-fan-card?include_prereleases&label=Beta&color=orange&style=flat-square)](https://github.com/selvakk2k/bldc-fan-card/releases)
 [![AI-Assisted](https://img.shields.io/badge/AI%20Assisted-Antigravity%20%7C%20Claude-blueviolet?style=flat-square&logo=google)](https://github.com/selvakk2k)
 [![AI Attribution](https://img.shields.io/badge/AI%20Attribution-AIA%20PAI%20Nc%20Hin-orange?style=flat-square)](https://aiattribution.github.io/interpret-attribution)
 
-A custom Lovelace dashboard card for Indian BLDC ceiling fans (Atomberg, Superfan, Orient, Activa, Goldmedal), designed for use with the [Indian BLDC Fan Integration](https://github.com/selvakk2k/superfan_ir) or any standard Home Assistant `fan` entity.
+A custom Lovelace dashboard card for Indian BLDC ceiling fans (Atomberg, Superfan, Orient, Activa, Goldmedal), designed for use with the [Indian BLDC Fan Integration](https://github.com/selvakk2k/ha-bldc-fan-ir) or any standard Home Assistant `fan` entity.
 
 ---
 
@@ -34,14 +34,14 @@ A custom Lovelace dashboard card for Indian BLDC ceiling fans (Atomberg, Superfa
 
 ### Method 1: Via HACS (Recommended)
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=selvakk2k&repository=superfan-card&category=plugin)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=selvakk2k&repository=bldc-fan-card&category=plugin)
 
 1. Click the **Open repository in HACS** button above, or open **HACS** from your Home Assistant sidebar.
-2. Click the top-right menu (⋮) → **Custom repositories** → Add `https://github.com/selvakk2k/superfan-card` with category **Dashboard**.
+2. Click the top-right menu (⋮) → **Custom repositories** → Add `https://github.com/selvakk2k/bldc-fan-card` with category **Dashboard**.
 3. Search for **Indian BLDC Fan Card**, click **Download**, and reload your dashboard.
 
 ### Method 2: Manual Installation
-1. Download `superfan-card.js` from the [Releases](https://github.com/selvakk2k/superfan-card/releases) page.
+1. Download `superfan-card.js` from the [Releases](https://github.com/selvakk2k/bldc-fan-card/releases) page.
 2. Place the file into `<config>/www/superfan-card.js`.
 3. In Home Assistant, go to **Settings → Dashboards → Resources** → Add `/local/superfan-card.js` as a **JavaScript Module**.
 
@@ -80,8 +80,8 @@ full_layout: google_home
 | :--- | :--- | :--- | :--- |
 | [Panasonic AC India](https://github.com/selvakk2k/ha-miraie-ac-in) | Integration | Local IR & Cloud MQTT control for Panasonic MirAIe Air Conditioners | `Stable` |
 | [Panasonic AC India Card](https://github.com/selvakk2k/miraie-ac-card-in) | Lovelace Card | Modern Lovelace card for Panasonic ACs | `Stable` |
-| [Indian BLDC Fan IR](https://github.com/selvakk2k/superfan_ir) | Integration | Native Home Assistant integration for Indian BLDC ceiling fans (Superfan, Atomberg) | `Stable` |
-| [Indian BLDC Fan Card](https://github.com/selvakk2k/superfan-card) | Lovelace Card | Interactive Lovelace card with speed dial & mode toggles for BLDC fans | `Stable` |
+| [Indian BLDC Fan IR](https://github.com/selvakk2k/ha-bldc-fan-ir) | Integration | Native Home Assistant integration for Indian BLDC ceiling fans (Atomberg, Superfan) | `Stable` |
+| [Indian BLDC Fan Card](https://github.com/selvakk2k/bldc-fan-card) | Lovelace Card | Interactive Lovelace card with speed dial & mode toggles for BLDC fans | `Stable` |
 | [IFB Washer Local](https://github.com/selvakk2k/ifb-washer-local) | Integration | Local Wi-Fi integration for IFB Front Load Washing Machines & Washer Dryers | `Beta` |
 | [IFB Washer Card](https://github.com/selvakk2k/ifb-washer-card) | Lovelace Card | Dedicated Lovelace card for IFB washers & dryers with cycle controls | `Beta` |
 | [Tinxy Local Python](https://github.com/selvakk2k/ha-tinxylocal) | Integration | Pure-Python local control for Tinxy smart switches and modules | `Stable` |

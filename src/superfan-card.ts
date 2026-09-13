@@ -11,7 +11,7 @@ const customCardEntry = {
   preview: true,
   domain: 'fan',
   domains: ['fan'],
-  documentationURL: 'https://github.com/selvakk2k/superfan-card',
+  documentationURL: 'https://github.com/selvakk2k/bldc-fan-card',
 };
 (window as any).customCards = (window as any).customCards || [];
 const existingCardIdx = (window as any).customCards.findIndex(
