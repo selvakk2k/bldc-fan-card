@@ -72,7 +72,7 @@ export class SuperfanCard extends LitElement {
           name: 'entity',
           required: true,
           label: 'Fan Entity',
-          selector: { entity: { domain: 'fan', integration: 'superfan_ir' } },
+          selector: { entity: { domain: 'fan' } },
         },
         { name: 'name', label: 'Custom Title', selector: { text: {} } },
         {
@@ -143,8 +143,18 @@ export class SuperfanCard extends LitElement {
     };
   }
 
-  static getStubConfig(hass: HomeAssistant, entities: string[], entitiesFallback: string[]) {
-    const fanEntity = entities.find((e) => e.startsWith('fan.')) || '';
+  static getStubConfig(hass?: HomeAssistant, entities?: string[], entitiesFallback?: string[]) {
+    let fanEntity = '';
+    if (entities && entities.length) {
+      fanEntity = entities.find((e) => e.startsWith('fan.')) || '';
+    }
+    if (!fanEntity && entitiesFallback && entitiesFallback.length) {
+      fanEntity = entitiesFallback.find((e) => e.startsWith('fan.')) || '';
+    }
+    if (!fanEntity && hass && hass.states) {
+      const fanKeys = Object.keys(hass.states).filter((e) => e.startsWith('fan.'));
+      fanEntity = fanKeys.find((e) => e.includes('superfan') || e.includes('bldc')) || fanKeys[0] || '';
+    }
     return { type: 'custom:superfan-card', entity: fanEntity };
   }
 
@@ -227,35 +237,50 @@ export class SuperfanCard extends LitElement {
     );
   }
 
+  private _getEntityId(): string {
+    if (this._config?.entity) return this._config.entity;
+    if (this.hass?.states) {
+      const fanKeys = Object.keys(this.hass.states).filter((e) => e.startsWith('fan.'));
+      return fanKeys.find((e) => e.includes('superfan') || e.includes('bldc')) || fanKeys[0] || '';
+    }
+    return '';
+  }
+
   private _setSpeed(percentage: number): void {
+    const entityId = this._getEntityId();
+    if (!entityId) return;
     this._haptic('selection');
     this.hass.callService('fan', 'set_percentage', {
-      entity_id: this._config.entity,
+      entity_id: entityId,
       percentage,
     });
   }
 
   private _toggle(): void {
     if (!this.hass || !this._config) return;
+    const entityId = this._getEntityId();
+    if (!entityId) return;
     this._haptic('medium');
-    const stateObj = this.hass.states[this._config.entity];
+    const stateObj = this.hass.states[entityId];
     if (!stateObj) return;
 
     if (stateObj.state === 'off') {
       this.hass.callService('fan', 'turn_on', {
-        entity_id: this._config.entity,
+        entity_id: entityId,
       });
     } else {
       this.hass.callService('fan', 'turn_off', {
-        entity_id: this._config.entity,
+        entity_id: entityId,
       });
     }
   }
 
   private _setPreset(preset: string): void {
+    const entityId = this._getEntityId();
+    if (!entityId) return;
     this._haptic('light');
     this.hass.callService('fan', 'set_preset_mode', {
-      entity_id: this._config.entity,
+      entity_id: entityId,
       preset_mode: preset,
     });
   }
@@ -296,24 +321,24 @@ export class SuperfanCard extends LitElement {
   protected render(): TemplateResult | null {
     if (!this._config || !this.hass) return null;
 
-    const entityId = this._config.entity;
+    const entityId = this._getEntityId();
     const stateObj = entityId ? this.hass.states[entityId] : undefined;
     if (!stateObj) {
       return html`
         <ha-card class="superfan-card">
           <div style="padding: 24px; text-align: center; color: var(--appliance-text-2, #8e8e93);">
             <ha-icon icon="mdi:fan" style="--mdc-icon-size: 40px; margin-bottom: 8px; opacity: 0.6;"></ha-icon>
-            <div style="font-weight: 500; font-size: 15px; color: var(--appliance-text-1, var(--primary-text-color, inherit));">Superfan Card</div>
+            <div style="font-weight: 500; font-size: 15px; color: var(--appliance-text-1, var(--primary-text-color, inherit));">BLDC Fan Card</div>
             <div style="font-size: 13px; margin-top: 4px;">
-              ${entityId ? html`Entity not found: <code>${entityId}</code>` : 'Please select a Superfan entity in the card editor.'}
+              ${entityId ? html`Entity not found: <code>${entityId}</code>` : 'Please select a BLDC fan entity in the card editor.'}
             </div>
           </div>
         </ha-card>
       `;
     }
 
-    const name = this._config.name || stateObj.attributes.friendly_name || 'Superfan';
-    const baseId = this._config.entity.replace(/^fan\./, '');
+    const name = this._config.name || stateObj.attributes.friendly_name || 'Fan';
+    const baseId = entityId.replace(/^fan\./, '');
     const controlSource = this._config.control_source_sensor 
       ? this.hass.states[this._config.control_source_sensor]
       : (this.hass.states[`sensor.${baseId}_last_controlled_via`] || Object.values(this.hass.states).find(s => s.entity_id.startsWith('sensor.') && s.entity_id.includes(baseId) && s.entity_id.includes('last_controlled_via')));
