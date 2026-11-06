@@ -94,6 +94,7 @@ full_layout: google_home
 ### Project Contributors & AI Attribution
 * **Lead Architecture & Hardware Validation**: [@selvakk2k](https://github.com/selvakk2k) — physical testing on Indian BLDC fan remotes, Lovelace UX requirements, and design tokens.
 * **Code Implementation & Engineering**: **Antigravity** (Google DeepMind) — custom card component architecture, dynamic speed scaling, responsive flex-wrap layout, and HACS compliance.
+* **Automated Code Review & Auditing**: **CodeRabbit** ([@coderabbitai](https://github.com/coderabbitai)) — automated pull request and pre-commit code reviews, edge case detection, and security verification.
 * **Pre-Release Code Review & Auditing**: **Claude** (Anthropic) — independent code review, CSS architecture audits, and edge-case verification.
 
 Licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
