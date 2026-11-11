@@ -1,6 +1,6 @@
 # Indian BLDC Fan Card (`bldc-fan-card`)
 
-[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
+[![Marketplace Custom](https://img.shields.io/badge/Marketplace-Custom-41BDF5.svg?style=flat-square)](https://www.home-assistant.io/integrations/marketplace/)
 [![Stable](https://img.shields.io/github/v/release/selvakk2k/bldc-fan-card?label=Stable&style=flat-square)](https://github.com/selvakk2k/bldc-fan-card/releases/latest)
 [![Beta](https://img.shields.io/github/v/release/selvakk2k/bldc-fan-card?include_prereleases&label=Beta&color=orange&style=flat-square)](https://github.com/selvakk2k/bldc-fan-card/releases)
 [![AI-Assisted](https://img.shields.io/badge/AI%20Assisted-Antigravity%20%7C%20Claude-blueviolet?style=flat-square&logo=google)](https://github.com/selvakk2k)
@@ -32,13 +32,27 @@ A custom Lovelace dashboard card for Indian BLDC ceiling fans (Atomberg, Superfa
 
 ## Installation
 
-### Method 1: Via HACS (Recommended)
+### Method 1: Via Home Assistant Marketplace (Recommended)
+
+*Requires Home Assistant **2026.11** or newer. (On an older version? Expand the legacy HACS instructions below.)*
+
+[![Open your Home Assistant instance and open a repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=selvakk2k&repository=bldc-fan-card&category=plugin)
+
+1. Click the **Open Marketplace repository** button above, or go to **Settings** → **Marketplace** in Home Assistant.
+2. In the upper-right corner, select **Add from link**.
+3. Under **GitHub link**, enter `https://github.com/selvakk2k/bldc-fan-card` (connect your GitHub account if prompted), then select **Add**. *(If prompted for **Type**, select **Dashboard** and select **Add** again.)*
+4. Open **Indian BLDC Fan Card** from the list, select **Download**, and reload your dashboard.
+
+<details>
+<summary>Home Assistant 2026.10 or older (Legacy HACS)</summary>
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=selvakk2k&repository=bldc-fan-card&category=plugin)
 
 1. Click the **Open repository in HACS** button above, or open **HACS** from your Home Assistant sidebar.
 2. Click the top-right menu (⋮) → **Custom repositories** → Add `https://github.com/selvakk2k/bldc-fan-card` with category **Dashboard**.
 3. Search for **Indian BLDC Fan Card**, click **Download**, and reload your dashboard.
+
+</details>
 
 ### Method 2: Manual Installation
 1. Download `superfan-card.js` from the [Releases](https://github.com/selvakk2k/bldc-fan-card/releases) page.
@@ -93,7 +107,7 @@ full_layout: google_home
 
 ### Project Contributors & AI Attribution
 * **Lead Architecture & Hardware Validation**: [@selvakk2k](https://github.com/selvakk2k) — physical testing on Indian BLDC fan remotes, Lovelace UX requirements, and design tokens.
-* **Code Implementation & Engineering**: **Antigravity** (Google DeepMind) — custom card component architecture, dynamic speed scaling, responsive flex-wrap layout, and HACS compliance.
+* **Code Implementation & Engineering**: **Antigravity** (Google DeepMind) — custom card component architecture, dynamic speed scaling, responsive flex-wrap layout, and Marketplace/HACS compatibility.
 * **Automated Code Review & Auditing**: **CodeRabbit** ([@coderabbitai](https://github.com/coderabbitai)) — automated pull request and pre-commit code reviews, edge case detection, and security verification.
 * **Pre-Release Code Review & Auditing**: **Claude** (Anthropic) — independent code review, CSS architecture audits, and edge-case verification.
 
